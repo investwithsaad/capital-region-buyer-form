@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homes for Sale in the Capital Region | Saad Tai, Real Broker NY</title>
+
+<!-- ============================================================
+     TODO — ANALYTICS & CONVERSION TRACKING (required before launch)
+     Insert GA4 and Google Ads tags here, in this order, before </head>.
+
+     1) GA4:
+     <script async src="https://www.googletagmanager.com/gtag/js?id=[INSERT GA4 MEASUREMENT ID]"></script>
+     <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+       gtag('config', '[INSERT GA4 MEASUREMENT ID]');
+     </script>
+
+     2) Google Ads (same gtag.js load can be shared if IDs match):
+     <script>
+       gtag('config', '[INSERT GOOGLE ADS CONVERSION ID]');
+     </script>
+
+     3) Conversion firing (used later in this file's <script> block):
+     gtag('event', 'conversion', {
+       'send_to': '[INSERT GOOGLE ADS CONVERSION ID]/[INSERT GOOGLE ADS CONVERSION LABEL]'
+     });
+
+     Until these are inserted, pushEvent() below only logs to the console.
+     ============================================================ -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --navy:#0D1F3C;
+  --navy-soft:#16294d;
+  --gold:#B8912E;
+  --cream:#F6F3EC;
+  --cream-dim:#EFEAE0;
+  --slate:#4B5563;
+  --slate-light:#7A8494;
+  --sage:#5E7F63;
+  --white:#FFFFFF;
+  --line:#DDD6C8;
+  --radius:2px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+}
+body{
+  font-family:'IBM Plex Sans', sans-serif;
+  color:var(--navy);
+  background:var(--cream);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block; max-width:100%;}
+a{color:inherit;}
+button{font-family:inherit;}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+.search-option:focus-visible, .radio-pill:has(input:focus-visible){
+  outline:3px solid var(--gold); outline-offset:2px;
+}
+
+/* Accessible honeypot — invisible to sighted users, skipped by screen readers, unreachable by tab */
+.hp-field{position:absolute; left:-9999px; top:-9999px; width:1px; height:1px; overflow:hidden;}
+
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+}
+h1,h2,h3{font-family:'Fraunces', serif; font-weight:600; color:var(--navy); letter-spacing:-0.01em;}
+h1{font-size:clamp(34px,6vw,58px); line-height:1.05; font-weight:600;}
+h2{font-size:clamp(26px,4vw,38px); line-height:1.12;}
+h3{font-size:20px; line-height:1.25;}
+p{color:var(--slate);}
+.lede{font-size:18px; color:var(--slate); max-width:56ch;}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:16px 28px; border-radius:var(--radius); font-weight:600; font-size:15.5px;
+  border:1.5px solid transparent; cursor:pointer; text-decoration:none;
+  transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  min-height:52px;
+}
+.btn:active{transform:scale(0.98);}
+.btn-primary{background:var(--gold); color:var(--navy);}
+.btn-primary:hover{background:#c9a13a;}
+.btn-secondary{background:transparent; color:var(--white); border-color:rgba(255,255,255,0.45);}
+.btn-secondary:hover{border-color:var(--white);}
+.btn-outline-dark{background:transparent; color:var(--navy); border-color:var(--navy);}
+.btn-outline-dark:hover{background:var(--navy); color:var(--white);}
+.btn-block{width:100%;}
+
+/* NAV */
+header{
+  position:sticky; top:0; z-index:50; background:rgba(246,243,236,0.92);
+  backdrop-filter:blur(6px); border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; gap:12px;}
+.brand{font-family:'Fraunces', serif; font-weight:600; font-size:19px; color:var(--navy); text-decoration:none;}
+.brand span{color:var(--gold);}
+.nav-cta{display:flex; align-items:center; gap:14px;}
+.nav-phone{font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--navy); text-decoration:none; display:none;}
+@media(min-width:640px){.nav-phone{display:inline;}}
+.nav-browse{font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:14px; color:var(--navy); text-decoration:none; white-space:nowrap;}
+.nav-browse:hover{color:var(--gold);}
+
+/* HERO */
+.hero{
+  position:relative; background:var(--navy); color:var(--white);
+  padding:64px 0 0; overflow:hidden;
+}
+.hero-inner{max-width:1120px; margin:0 auto; padding:0 24px 56px; position:relative; z-index:2;}
+.hero .eyebrow{color:var(--gold);}
+.hero h1{color:var(--white); margin-top:14px;}
+.hero .lede{color:#C9CFDC; margin-top:18px; font-size:19px;}
+.hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-top:32px;}
+.hero-meta{display:flex; gap:28px; margin-top:32px; flex-wrap:wrap;}
+.hero-meta div{font-family:'IBM Plex Mono',monospace; font-size:13px; color:#9AA5B8;}
+.hero-meta strong{display:block; font-family:'Fraunces',serif; font-size:22px; color:var(--white); font-weight:600;}
+
+.skyline{position:relative; width:100%; height:120px; z-index:1;}
+.skyline svg{width:100%; height:100%; display:block;}
+
+/* Search / Explore section */
+.section{padding:76px 0;}
+.section-head{max-width:640px; margin-bottom:40px;}
+.section-head .eyebrow{color:var(--gold);}
+.section-head h2{margin-top:10px;}
+.section-head p{margin-top:14px;}
+
+/* Unified property search module — one experience, two steps, one CTA */
+.search-module{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:32px;
+}
+.search-module-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
+@media(max-width:780px){.search-module-grid{grid-template-columns:1fr; gap:28px;}}
+.search-step-label{
+  font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.12em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+}
+.search-step h3{margin-bottom:14px; font-size:18px;}
+.search-options{display:flex; flex-wrap:wrap; gap:9px;}
+.search-suboptions{
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:10px; padding:10px 12px 10px 14px;
+  background:var(--cream-dim); border-left:2.5px solid var(--gold); border-radius:var(--radius);
+}
+.search-suboptions-label{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--slate-light); text-transform:uppercase; letter-spacing:0.06em; margin-right:2px;}
+.search-option-sub{font-size:12.5px; padding:8px 13px;}
+.search-option[data-group].expanded{border-color:var(--gold); color:var(--gold);}
+.search-option{
+  font-family:'IBM Plex Mono', monospace; font-size:13px; padding:10px 16px;
+  border:1.5px solid var(--navy); border-radius:999px; background:transparent;
+  color:var(--navy); cursor:pointer; transition:background .15s, color .15s, border-color .15s;
+  white-space:nowrap;
+}
+.search-option:hover{border-color:var(--gold);}
+.search-option.selected{background:var(--navy); color:var(--white); border-color:var(--navy);}
+.custom-location-field{margin-top:14px; display:flex; flex-direction:column; gap:6px; max-width:360px;}
+.custom-location-field label{font-size:13px; font-weight:600; color:var(--navy);}
+.custom-location-field input{
+  padding:12px 14px; border:1.5px solid var(--line); border-radius:var(--radius);
+  font-family:'IBM Plex Sans',sans-serif; font-size:16px; background:var(--cream-dim); color:var(--navy);
+}
+.custom-location-field input:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+.search-cta-row{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  margin-top:28px; padding-top:24px; border-top:1px solid var(--line);
+}
+.search-validation{font-size:13px; color:#B3453D; display:none;}
+.search-validation.show{display:inline;}
+.search-summary{font-size:13.5px; color:var(--slate); font-family:'IBM Plex Mono',monospace;}
+.search-hint-static{font-size:12.5px; color:var(--slate-light); margin-top:8px;}
+.idx-note{margin-top:18px; font-size:13.5px; color:var(--slate-light); max-width:60ch;}
+.idx-inline-warning{
+  display:none; background:#FBEEEC; border:1px solid #B3453D; color:#8A332C; padding:12px 14px;
+  border-radius:var(--radius); font-size:13.5px; margin-top:14px;
+}
+.idx-inline-warning.show{display:block;}
+
+/* Why not just use a portal — differentiation block */
+.compare-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+.compare-card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+.compare-card .eyebrow{font-size:11px; color:var(--sage); margin-bottom:8px;}
+.compare-card h3{font-size:16.5px; margin-bottom:6px;}
+.compare-card p{font-size:14px;}
+
+/* Trust placeholder graceful states */
+.photo-monogram{
+  aspect-ratio:3/4; background:var(--navy); border-radius:var(--radius);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-family:'Fraunces',serif; font-size:42px; font-weight:600;
+}
+.placeholder-fade{color:var(--slate-light); font-size:13px; font-style:italic;}
+
+/* Form validation state */
+.field-error{border-color:#B3453D !important; background:#FBEEEC !important;}
+.form-error-banner{
+  background:#FBEEEC; border:1px solid #B3453D; color:#8A332C; padding:14px 16px;
+  border-radius:var(--radius); font-size:14px; margin-bottom:18px; display:none;
+}
+.form-error-banner.show{display:block;}
+
+/* Form section */
+.form-section{background:var(--navy); color:var(--white);}
+.form-section .section-head p{color:#C9CFDC;}
+.form-section .eyebrow{color:var(--gold);}
+.form-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:start;}
+@media(max-width:860px){.form-grid{grid-template-columns:1fr;}}
+.form-card{background:var(--white); border-radius:var(--radius); padding:32px; color:var(--navy);}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+@media(max-width:520px){.field-row{grid-template-columns:1fr;}}
+.field{display:flex; flex-direction:column; gap:6px; margin-bottom:14px;}
+.field label{font-size:13px; font-weight:600; color:var(--navy);}
+.field input, .field select{
+  padding:13px 14px; border:1.5px solid var(--line); border-radius:var(--radius);
+  font-family:'IBM Plex Sans',sans-serif; font-size:16px; background:var(--cream-dim); color:var(--navy);
+}
+.field input:focus, .field select:focus{outline:2px solid var(--gold); outline-offset:1px; background:var(--white);}
+.radio-group{display:flex; flex-wrap:wrap; gap:8px;}
+.radio-pill{
+  font-size:13px; padding:8px 13px; border:1.5px solid var(--line); border-radius:999px;
+  cursor:pointer; background:var(--cream-dim); user-select:none;
+}
+.radio-pill input{display:none;}
+.radio-pill:has(input:checked){background:var(--navy); color:var(--white); border-color:var(--navy);}
+.form-side-note{font-size:14px; color:#C9CFDC; margin-top:20px; border-top:1px solid rgba(255,255,255,0.15); padding-top:20px;}
+.form-side-note strong{color:var(--white); display:block; margin-bottom:6px; font-family:'Fraunces',serif; font-size:16px;}
+.req{color:var(--gold);}
+.field-error-msg{font-size:12.5px; color:#B3453D; display:none; margin-top:2px;}
+.field-error-msg.show{display:block;}
+
+/* Why work with me — 3 benefits */
+.benefit-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px;}
+.benefit-card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:26px;
+  border-top:3px solid var(--gold);
+}
+.benefit-card h3{margin-bottom:8px;}
+.benefit-card p{font-size:14.5px;}
+
+.stat-placeholder{
+  border:1px dashed var(--line); padding:12px 14px; border-radius:var(--radius); font-size:12.5px;
+  color:var(--slate-light); font-family:'IBM Plex Mono',monospace; margin-top:8px;
+}
+
+/* Trust */
+.trust-grid{display:grid; grid-template-columns:280px 1fr; gap:44px;}
+@media(max-width:760px){.trust-grid{grid-template-columns:1fr;}}
+.agent-photo{
+  aspect-ratio:3/4; background:var(--cream-dim); border:1px dashed var(--line); border-radius:var(--radius);
+  display:flex; align-items:center; justify-content:center; text-align:center; padding:20px;
+  color:var(--slate-light); font-size:13px; font-family:'IBM Plex Mono',monospace;
+}
+.credential-row{margin-top:16px; font-size:13px; color:var(--slate); border-top:1px solid var(--line); padding-top:14px;}
+.trust-detail h3{margin-bottom:10px;}
+.testimonial-card{
+  border:1px dashed var(--line); border-radius:var(--radius); padding:18px 20px; margin-top:14px;
+  color:var(--slate-light); font-size:14px; font-style:italic; background:var(--cream-dim);
+}
+
+/* Video */
+.video-frame{
+  aspect-ratio:16/9; background:var(--navy); border-radius:var(--radius); display:flex;
+  align-items:center; justify-content:center; position:relative; overflow:hidden;
+}
+.play-btn{
+  width:64px; height:64px; border-radius:50%; background:var(--gold); display:flex; align-items:center;
+  justify-content:center; cursor:pointer; border:none; padding:0;
+}
+.play-btn:disabled{background:var(--slate-light); cursor:default;}
+.play-btn::after{content:''; border-left:18px solid var(--navy); border-top:11px solid transparent; border-bottom:11px solid transparent; margin-left:5px;}
+.video-caption{color:#9AA5B8; font-size:12.5px; font-family:'IBM Plex Mono',monospace; text-align:center; margin-top:12px;}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  width:100%; text-align:left; background:none; border:none; padding:20px 0; display:flex;
+  justify-content:space-between; align-items:center; cursor:pointer; gap:16px;
+}
+.faq-q h3{font-size:17px;}
+.faq-icon{font-family:'IBM Plex Mono',monospace; font-size:20px; color:var(--gold); flex-shrink:0; transition:transform .2s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+.faq-a p{padding-bottom:20px; font-size:15px;}
+
+/* Final CTA */
+.final-cta{background:var(--navy); color:var(--white); text-align:center;}
+.final-cta h2{color:var(--white);}
+.final-cta .lede{color:#C9CFDC; margin:16px auto 0;}
+.final-cta .hero-ctas{justify-content:center; margin-top:30px;}
+
+footer{padding:32px 0; text-align:center; font-size:12.5px; color:var(--slate-light); border-top:1px solid var(--line);}
+
+/* Sticky mobile CTA bar */
+.mobile-bar{
+  position:fixed; bottom:0; left:0; right:0; z-index:60; background:var(--navy);
+  display:flex; gap:10px; padding:12px 16px; box-shadow:0 -4px 14px rgba(0,0,0,0.12);
+}
+.mobile-bar .btn{flex:1; padding:13px 10px; font-size:14px; min-height:44px;}
+@media(min-width:860px){.mobile-bar{display:none;}}
+body{padding-bottom:76px;}
+@media(min-width:860px){body{padding-bottom:0;}}
+
+@media(max-width:640px){
+  .section{padding:52px 0;}
+  h2{font-size:28px;}
+  .search-module{padding:22px 18px;}
+  .search-cta-row{flex-direction:column; align-items:stretch;}
+  #seeMatchingHomesBtn{width:100%;}
+  .search-validation{text-align:center;}
+  .search-option{padding:12px 16px; font-size:13.5px;}
+}
+@media(max-width:400px){
+  .nav-inner{padding:14px 16px;}
+  .brand{font-size:16px; white-space:nowrap;}
+  .brand span, .brand .brand-suffix{display:none;}
+  .nav-browse{font-size:12.5px;}
+  .nav-cta{gap:8px;}
+  header .btn{padding:9px 12px !important; font-size:12.5px !important;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav-inner" aria-label="Primary">
+    <a href="#" class="brand">Saad Tai <span class="brand-suffix"><span>·</span> Real Broker NY</span></a>
+    <div class="nav-cta">
+      <a class="nav-browse" href="#explore" id="navBrowseLink">Browse Homes</a>
+      <a class="nav-phone" href="tel:518-348-9535">518-348-9535</a>
+      <a href="#buyer-form" class="btn btn-outline-dark" style="padding:10px 18px; min-height:auto; font-size:14px;">Get Buyer Help</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Albany · Troy · Schenectady · Capital Region</div>
+    <h1>Find homes for sale in the Capital Region.</h1>
+    <p class="lede">Browse current listings in Albany, Troy, Schenectady, and surrounding communities, and get direct help when you're ready to make a move.</p>
+    <div class="hero-ctas">
+      <a href="#explore" class="btn btn-primary">Browse Homes</a>
+      <a href="#buyer-form" class="btn btn-secondary">Get Personal Buyer Help</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Local focus</strong>Capital Region property guidance</div>
+      <div><strong>Direct service</strong>You'll work directly with Saad</div>
+      <div><strong>No pressure</strong>Browse first and reach out when you're ready</div>
+    </div>
+  </div>
+  <div class="skyline">
+    <svg viewBox="0 0 1200 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="1200" height="160" fill="#0D1F3C"/>
+      <!-- Corning Tower (Albany) -->
+      <rect x="80" y="30" width="46" height="130" fill="#16294d"/>
+      <rect x="92" y="14" width="22" height="20" fill="#16294d"/>
+      <!-- Empire State Plaza slab -->
+      <rect x="150" y="70" width="90" height="90" fill="#14243f"/>
+      <!-- Troy church spire cluster -->
+      <polygon points="330,60 342,160 318,160" fill="#16294d"/>
+      <rect x="322" y="90" width="16" height="70" fill="#14243f"/>
+      <!-- Schenectady clocktower -->
+      <rect x="410" y="80" width="30" height="80" fill="#16294d"/>
+      <polygon points="410,80 425,55 440,80" fill="#16294d"/>
+      <!-- generic rowhomes -->
+      <g fill="#14243f">
+        <rect x="480" y="110" width="40" height="50"/>
+        <rect x="522" y="100" width="40" height="60"/>
+        <rect x="564" y="118" width="40" height="42"/>
+        <rect x="606" y="105" width="40" height="55"/>
+      </g>
+      <!-- gold pin markers over rooftops -->
+      <circle cx="500" cy="102" r="4" fill="#B8912E"/>
+      <circle cx="600" cy="98" r="4" fill="#B8912E"/>
+      <circle cx="105" cy="24" r="4" fill="#B8912E"/>
+      <!-- far right suburban tree line -->
+      <g fill="#14243f">
+        <rect x="700" y="120" width="500" height="40"/>
+      </g>
+      <g fill="#16294d">
+        <circle cx="740" cy="118" r="18"/>
+        <circle cx="800" cy="112" r="22"/>
+        <circle cx="870" cy="120" r="16"/>
+        <circle cx="950" cy="110" r="24"/>
+        <circle cx="1030" cy="118" r="18"/>
+        <circle cx="1100" cy="114" r="20"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- UNIFIED PROPERTY SEARCH MODULE — one search experience, not scattered chips -->
+<section class="section" id="explore">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Start your home search</div>
+      <h2>Find homes that match what you're looking for.</h2>
+      <p>Choose an area and a property type, and I'll point you to the closest matching search on my live property-search website.</p>
+    </div>
+
+    <div class="search-module">
+      <div class="search-module-grid">
+        <div class="search-step">
+          <div class="search-step-label">Step 1</div>
+          <h3>Where are you looking to buy?</h3>
+          <div class="search-options" id="locationOptions">
+            <button type="button" class="search-option" data-location="albany">Albany</button>
+            <button type="button" class="search-option" data-location="troy">Troy</button>
+            <button type="button" class="search-option" data-location="schenectady">Schenectady</button>
+            <button type="button" class="search-option" data-group="colonie-latham">Colonie / Latham</button>
+            <button type="button" class="search-option" data-location="clifton-park">Clifton Park</button>
+            <button type="button" class="search-option" data-group="saratoga">Saratoga Area</button>
+            <button type="button" class="search-option" data-location="other">Other</button>
+          </div>
+          <div class="search-suboptions" id="colonieLathamSubOptions" style="display:none;">
+            <span class="search-suboptions-label">Which one?</span>
+            <button type="button" class="search-option search-option-sub" data-location="colonie">Colonie</button>
+            <button type="button" class="search-option search-option-sub" data-location="latham">Latham</button>
+          </div>
+          <div class="search-suboptions" id="saratogaSubOptions" style="display:none;">
+            <span class="search-suboptions-label">Which one?</span>
+            <button type="button" class="search-option search-option-sub" data-location="saratoga-springs">Saratoga Springs</button>
+            <button type="button" class="search-option search-option-sub" data-location="ballston-spa">Ballston Spa</button>
+            <button type="button" class="search-option search-option-sub" data-location="malta">Malta</button>
+          </div>
+          <div class="custom-location-field" id="searchCustomLocationWrap" style="display:none;">
+            <label for="searchCustomLocation">Enter the city, town, ZIP code, or neighborhood you're interested in</label>
+            <input type="text" id="searchCustomLocation" placeholder="e.g. Guilderland, Voorheesville, 12065" autocomplete="off">
+          </div>
+        </div>
+        <div class="search-step">
+          <div class="search-step-label">Step 2</div>
+          <h3>What type of property are you looking for?</h3>
+          <div class="search-options" id="typeOptions">
+            <button type="button" class="search-option" data-type="any">Any home</button>
+            <button type="button" class="search-option" data-type="single">Single-family</button>
+            <button type="button" class="search-option" data-type="condo">Condo</button>
+            <button type="button" class="search-option" data-type="townhouse">Townhouse</button>
+            <button type="button" class="search-option" data-type="new">New construction</button>
+            <button type="button" class="search-option" data-type="movein">Move-in ready</button>
+            <button type="button" class="search-option" data-type="multifamily">2–4 unit multifamily</button>
+          </div>
+        </div>
+      </div>
+      <div class="search-cta-row">
+        <button type="button" class="btn btn-primary" id="seeMatchingHomesBtn">See Matching Homes</button>
+        <span class="search-validation" id="searchValidationMsg" role="alert">Choose a location and a property type to continue.</span>
+        <span class="search-summary" id="searchSummary" aria-live="polite"></span>
+      </div>
+      <p class="search-hint-static">Opens your search on my property-search site in a new tab — this page stays open.</p>
+      <div class="idx-inline-warning" id="idxInlineWarning" role="alert" aria-live="assertive"></div>
+    </div>
+    <p class="idx-note">This search is operated by Saad Tai, Real Broker NY LLC — not the official MLS. "See Matching Homes" opens the closest matching search on my live property-search site in a new tab.</p>
+  </div>
+</section>
+
+<!-- WHY WORK DIRECTLY WITH SAAD — honest differentiation, no competitor claims -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why work directly with Saad</div>
+      <h2>Portals are great for browsing. Judgment is what helps once you've found something.</h2>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="eyebrow">Data vs. context</div>
+        <h3>Listing sites are useful for browsing photos and specs.</h3>
+        <p>What they don't do is tell you whether a specific listing is priced fairly for the area, or what's worth asking about before you tour it. That's context I can add.</p>
+      </div>
+      <div class="compare-card">
+        <div class="eyebrow">Direct access</div>
+        <h3>Buyer-lead services often route you to whoever's next in a queue.</h3>
+        <p>Every conversation started on this page comes directly to me — the same person the whole way through, not a rotating team.</p>
+      </div>
+      <div class="compare-card">
+        <div class="eyebrow">Going in prepared</div>
+        <h3>A strong-looking offer can still lose in a competitive market.</h3>
+        <p>Comparable sales, offer structure, and negotiation are where local guidance tends to matter most — not just scheduling a showing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER FORM -->
+<section class="section form-section" id="buyer-form">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Get direct help</div>
+      <h2>Tell me what you're looking for.</h2>
+      <p>Your name, phone, email, and timeline are all I need to follow up — everything else below is optional and just helps me be more useful when I do. Takes about 30 seconds.</p>
+    </div>
+    <div class="form-grid">
+      <div id="formColumn">
+      <form class="form-card" id="buyerForm" novalidate>
+        <!-- Hidden campaign attribution fields — populated from URL params by JS below -->
+        <input type="hidden" id="utm_source" name="utm_source" value="">
+        <input type="hidden" id="utm_medium" name="utm_medium" value="">
+        <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+        <input type="hidden" id="utm_term" name="utm_term" value="">
+        <input type="hidden" id="utm_content" name="utm_content" value="">
+        <input type="hidden" id="gclid" name="gclid" value="">
+        <input type="hidden" id="landing_page_version" name="landing_page_version" value="capital-region-buyer-v4">
+
+        <!-- Honeypot — invisible to people, sometimes filled by bots. Never shown, never tabbed to. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="hp_confirm">Leave this field blank</label>
+          <input type="text" id="hp_confirm" name="hp_confirm" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Name <span class="req">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Your name" minlength="2" required aria-describedby="name-error">
+            <span class="field-error-msg" id="name-error" role="alert"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Phone <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="518-555-0100" pattern="[0-9()+\-.\s]{10,}" title="Enter a valid phone number (at least 10 digits)" required aria-describedby="phone-error">
+            <span class="field-error-msg" id="phone-error" role="alert"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required aria-describedby="email-error">
+          <span class="field-error-msg" id="email-error" role="alert"></span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="area">Preferred area</label>
+            <select id="area" name="area">
+              <option value="" selected disabled>Select an area (optional)</option>
+              <option>Albany</option>
+              <option>Troy</option>
+              <option>Schenectady</option>
+              <option>Colonie</option>
+              <option>Latham</option>
+              <option>Guilderland</option>
+              <option>Bethlehem / Delmar</option>
+              <option>Cohoes</option>
+              <option>Watervliet</option>
+              <option>Rensselaer</option>
+              <option>East Greenbush</option>
+              <option>Clifton Park</option>
+              <option>Saratoga Springs</option>
+              <option>Ballston Spa</option>
+              <option>Malta</option>
+              <option>Other</option>
+            </select>
+            <div class="custom-location-field" id="formCustomLocationWrap" style="display:none; margin-top:8px;">
+              <label for="formCustomLocation">Enter the city, town, ZIP code, or neighborhood you're interested in</label>
+              <input type="text" id="formCustomLocation" name="area_other" placeholder="e.g. Voorheesville, or 12065" autocomplete="off">
+            </div>
+          </div>
+          <div class="field">
+            <label for="price">Price range</label>
+            <select id="price" name="price">
+              <option value="" selected disabled>Select a price range (optional)</option>
+              <option>Under $250k</option>
+              <option>$250k – $400k</option>
+              <option>$400k – $600k</option>
+              <option>$600k – $850k</option>
+              <option>$850k+</option>
+              <option>Still figuring this out</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="type">Property type</label>
+          <select id="type" name="type">
+            <option value="" selected disabled>Select a property type (optional)</option>
+            <option>Any home</option>
+            <option>Single-family</option>
+            <option>Condo</option>
+            <option>Townhouse</option>
+            <option>New construction</option>
+            <option>Move-in ready</option>
+            <option>2–4 unit multifamily</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>When are you hoping to buy? <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup" aria-required="true">
+            <label class="radio-pill"><input type="radio" name="timeline" value="ready" required>Ready now</label>
+            <label class="radio-pill"><input type="radio" name="timeline" value="30">Within 30 days</label>
+            <label class="radio-pill"><input type="radio" name="timeline" value="1-3">1–3 months</label>
+            <label class="radio-pill"><input type="radio" name="timeline" value="3-6">3–6 months</label>
+            <label class="radio-pill"><input type="radio" name="timeline" value="6+">6+ months</label>
+            <label class="radio-pill"><input type="radio" name="timeline" value="research">Just researching</label>
+          </div>
+          <span class="field-error-msg" id="timeline-error" role="alert"></span>
+        </div>
+        <div class="field">
+          <label>Are you pre-approved for a mortgage?</label>
+          <div class="radio-group">
+            <label class="radio-pill"><input type="radio" name="preapproved" value="yes">Yes</label>
+            <label class="radio-pill"><input type="radio" name="preapproved" value="no">Not yet</label>
+            <label class="radio-pill"><input type="radio" name="preapproved" value="unsure">Not sure how</label>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="other_agent">Working with another agent?</label>
+            <select id="other_agent" name="other_agent">
+              <option value="" selected disabled>Please select (optional)</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+              <option value="spoken_not_committed">Spoken with someone, not committed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="need_to_sell">Need to sell a home first?</label>
+            <select id="need_to_sell" name="need_to_sell">
+              <option value="" selected disabled>Please select (optional)</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+              <option value="not_sure">Not sure</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- lead_intent_tier is computed in JS from the timeline answer; never shown to the visitor -->
+        <input type="hidden" id="lead_intent_tier" name="lead_intent_tier" value="">
+
+        <div class="form-error-banner" id="formErrorBanner">
+          Something went wrong submitting this — your information hasn't been lost. Please try again, or call <a href="tel:518-348-9535" style="color:#8A332C; text-decoration:underline;">518-348-9535</a> directly.
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px;" id="submitBtn">Show Me Homes That Fit</button>
+      </form>
+
+      <!-- THANK YOU PANEL (hidden until form submission succeeds) -->
+      <div class="form-card" id="thankYouPanel" style="display:none;">
+        <h3 style="margin-bottom:10px;">Thanks — I've got your information.</h3>
+        <p style="margin-bottom:20px;">I'll personally review what you're looking for and follow up shortly. If you're ready now or within the next 30–90 days, I'll prioritize helping you identify the best next step.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="tel:518-348-9535" class="btn btn-primary btn-block">Call Saad Now — 518-348-9535</a>
+          <a href="#explore" class="btn btn-outline-dark btn-block">Keep Browsing Homes</a>
+          <!-- TODO: once a scheduler is set up, add a "Book a Time to Talk" button here linking to [INSERT CALENDAR BOOKING URL] -->
+        </div>
+      </div>
+      </div>
+      <div class="form-side-note" id="formSideNote">
+        <strong>What happens after you submit</strong>
+        I personally review every submission and follow up — usually by phone or text, since that's faster than email for most people. If you're already working with another agent or still just researching, it's fine to say so above.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WORK WITH ME -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How I help</div>
+      <h2>Direct help, start to finish.</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <h3>Find the right properties</h3>
+        <p>Help identify homes that match your goals, budget, and timing. I'll help you monitor new inventory, flag homes that fit your criteria, and act quickly when the right opportunity appears.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Make stronger decisions</h3>
+        <p>Guidance on comparable sales, property condition, offer strategy, and negotiation — so you know if a price and a property actually make sense.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Stay supported through closing</h3>
+        <p>Coordination with your lender, attorney, inspector, and other parties throughout the transaction, so nothing falls through the cracks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who you'd be working with</div>
+      <h2>Direct help from a real agent, not a lead-generation call center.</h2>
+      <p>You'll work directly with Saad throughout the search and purchase process.</p>
+    </div>
+    <div class="trust-grid">
+      <div>
+        <div class="agent-photo" id="agentPhoto">[INSERT SAAD HEADSHOT]</div>
+        <div class="credential-row">
+          <strong style="color:var(--navy); display:block; font-family:'Fraunces',serif; font-size:16px; margin-bottom:4px;">Saad Tai</strong>
+          NY License #10401373295<br>
+          Real Broker NY LLC<br>
+          Latham, NY<span id="gbpLinkWrap"></span>
+        </div>
+      </div>
+      <div class="trust-detail">
+        <div id="testimonialsBlock">
+          <h3>What clients have said</h3>
+          <div class="testimonial-card" id="testimonial1">[INSERT REAL TESTIMONIAL 1 — include the client's name and the town they bought in]</div>
+          <div class="testimonial-card" id="testimonial2">[INSERT REAL TESTIMONIAL 2]</div>
+        </div>
+        <div id="recentActivityBlock">
+          <h3 style="margin-top:24px;">Recent activity</h3>
+          <div class="stat-placeholder" id="recentActivity">[INSERT VERIFIED RECENT ACTIVITY — do not fabricate figures]</div>
+        </div>
+        <h3 style="margin-top:24px;">How I work</h3>
+        <p>I work with buyers across the Capital Region and focus on giving direct, honest guidance throughout the search and purchase process. If a question is outside what I can speak to accurately, I'll tell you that directly instead of guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="section" style="background:var(--cream-dim);">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin:0 auto 32px;">
+      <div class="eyebrow">Watch first</div>
+      <h2>Looking to buy in the Capital Region? Start here.</h2>
+    </div>
+    <div class="video-frame" id="videoEmbedFrame">
+      <button type="button" class="play-btn" id="videoPlayBtn" aria-label="Play introduction video"></button>
+    </div>
+    <p class="video-caption" id="videoCaption">A short introduction — who Saad is, how he helps buyers, how the process works, and how to reach him directly.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="wrap" style="max-width:800px;">
+    <div class="section-head">
+      <div class="eyebrow">Common questions</div>
+      <h2>Before you reach out</h2>
+    </div>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q"><h3>Do I need to be pre-approved before contacting you?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No. It's fine to reach out before you've spoken to a lender — I can point you toward that step if you haven't taken it yet.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>How quickly can we start looking at homes?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Usually within a few days of an initial conversation, once I understand what you're looking for and your timeline.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>What areas do you serve?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Albany, Troy, and Schenectady, along with Colonie, Latham, Guilderland, Bethlehem, Clifton Park, and the surrounding Capital Region communities.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>Can you help first-time buyers?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes. Most of the process questions first-time buyers have are things I walk through as they come up, not all at once upfront.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>Can you help with condos, townhouses, or 2–4 unit multifamily?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes — each of those comes with its own set of questions (HOA rules, reserves, rent rolls on multi-unit properties), and I'll help you work through those specifically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>What if I'm only researching right now?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>That's a fine reason to reach out. Say so in the form above and I'll send information without pushing for a call.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><h3>What if I'm already speaking with another agent?</h3><span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Let me know in the form above. If you haven't committed to working with someone, I'm happy to answer questions — if you're already under agreement with another agent, I'll respect that.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section final-cta">
+  <div class="wrap" style="max-width:640px;">
+    <div class="eyebrow" style="color:var(--gold);">Ready when you are</div>
+    <h2 style="margin-top:10px;">Tell me what you're looking for.</h2>
+    <p class="lede" style="text-align:center;">Share your preferred area, budget, property type, and timeline, and I'll help you understand what options may fit.</p>
+    <div class="hero-ctas">
+      <a href="#buyer-form" class="btn btn-primary">Show Me Homes That Fit</a>
+      <a href="tel:518-348-9535" class="btn btn-secondary">Call Saad — 518-348-9535</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Saad Tai · Real Broker NY LLC · NY License #10401373295 · Latham, NY · Equal Housing Opportunity<span id="gbpLinkWrapFooter"></span></div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="tel:518-348-9535" class="btn btn-secondary" style="border-color:rgba(255,255,255,0.4); color:#fff;">Call</a>
+  <a href="#buyer-form" class="btn btn-primary">Get Buyer Help</a>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURATION — one place for real business info and optional integrations.
+   Verified, known facts are hard-coded directly (name, phone, license) so they
+   never depend on JavaScript executing correctly. Optional/unverified items
+   default to empty and are hidden or shown an honest fallback until real
+   values are supplied here.
+   ============================================================ */
+const CONFIG = {
+  PHONE_DISPLAY: '518-348-9535',
+  PHONE_HREF: 'tel:518-348-9535',
+
+  // TODO: paste the real, verified Google Business Profile / Google Maps URL here.
+  // Until this is set, no Google link is shown anywhere on the page.
+  GOOGLE_BUSINESS_PROFILE_URL: '',
+
+  // TODO: paste a real video embed URL (e.g. a YouTube embed link) here.
+  // Until this is set, the video section shows an honest "coming soon" state.
+  VIDEO_URL: '',
+
+  // TODO: paste a real Google Maps embed URL here if a map is ever wanted.
+  // Until this is set, no map section is rendered at all.
+  MAP_EMBED_URL: '',
+
+  // TODO: paste a real, restricted Google Maps Platform API key here to enable
+  // Places Autocomplete on the "Other" location fields. Leave blank to skip —
+  // the plain text fields work correctly with no key at all.
+  GOOGLE_MAPS_API_KEY: ''
+};
+
+/* ============================================================
+   CANONICAL DATA — single source of truth for every location and property
+   type option used anywhere on this page (search module, buyer form, live
+   summary, submitted payload). Do not maintain a second list elsewhere.
+   ============================================================ */
+const LOCATIONS = {
+  albany: 'Albany', troy: 'Troy', schenectady: 'Schenectady', colonie: 'Colonie',
+  latham: 'Latham', guilderland: 'Guilderland', 'bethlehem-delmar': 'Bethlehem / Delmar',
+  cohoes: 'Cohoes', watervliet: 'Watervliet', rensselaer: 'Rensselaer',
+  'east-greenbush': 'East Greenbush', 'clifton-park': 'Clifton Park',
+  'saratoga-springs': 'Saratoga Springs', 'ballston-spa': 'Ballston Spa', malta: 'Malta',
+  other: 'Other'
+};
+const PROPERTY_TYPES = {
+  any: 'Any home', single: 'Single-family', condo: 'Condo', townhouse: 'Townhouse',
+  new: 'New construction', movein: 'Move-in ready', multifamily: '2–4 unit multifamily'
+};
+
+/* ============================================================
+   TRACKING STUB — replace pushEvent() body with real GA4 / Google Ads calls.
+   e.g. gtag('event', name, params);  or  dataLayer.push({event:name, ...params});
+   TODO: Insert GA4 tag and Google Ads conversion tag in <head> before relying on this
+   (see the TODO block at the top of <head> for the exact snippets).
+
+   SECONDARY ENGAGEMENT events (not the business conversion):
+     browse_homes_nav_click, location_selected, property_type_selected,
+     idx_search_started, property_search_click, form_started, video_play_click
+
+   PRIMARY LEAD ACTIONS (the actual business conversions):
+     form_submitted, phone_call_click, consultation_booked
+   ============================================================ */
+function pushEvent(name, params){
+  params = params || {};
+  console.log('[tracking]', name, params); // TODO: replace with real gtag/dataLayer call
+  // Example once GA4 is installed:
+  // if (typeof gtag === 'function') gtag('event', name, params);
+}
+
+/* Populate hidden attribution fields from the URL's query string */
+function getAllUrlParams(){
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    utm_term: params.get('utm_term') || '',
+    utm_content: params.get('utm_content') || '',
+    gclid: params.get('gclid') || ''
+  };
+}
+(function populateHiddenFields(){
+  const values = getAllUrlParams();
+  Object.keys(values).forEach(key=>{
+    const field = document.getElementById(key);
+    if(field) field.value = values[key];
+  });
+})();
+
+// idx_search_started fires once, on the first sign of search intent (first location or type selection)
+let idxSearchStarted = false;
+function markIdxSearchStarted(source){
+  if(!idxSearchStarted){
+    idxSearchStarted = true;
+    pushEvent('idx_search_started', {source: source});
+  }
+}
+
+/* ============================================================
+   UNIFIED PROPERTY SEARCH MODULE
+   Step 1 = location, Step 2 = property type, one "See Matching Homes" CTA.
+   Only Albany, Troy, Schenectady, and Clifton Park have dedicated IDX URLs
+   configured below (matching the pages Saad's One Real profile actually has).
+   Colonie, Latham, Saratoga Springs, Ballston Spa, and Malta do NOT have
+   dedicated pages — they are never assumed to share one identical filtered
+   search with each other. "Saratoga Area" only appears as a fallback for a
+   general (any-property-type) browse of that area; a specific property type
+   in one of those towns falls back to the honest type-only search instead,
+   rather than pretending the Saratoga-area page is filterable by type.
+   Every other canonical location — plus any custom "Other" location a
+   visitor types in — falls back to a type-specific search or the general
+   profile. Add more location entries below only once real filtered URLs
+   exist for them.
+   ============================================================ */
+let selectedLocation = null;
+let selectedType = null;
+let selectedCustomLocation = '';
+
+const locationOnlyUrls = {
+  albany: '[INSERT ALBANY IDX URL]',
+  troy: '[INSERT TROY IDX URL]',
+  schenectady: '[INSERT SCHENECTADY IDX URL]',
+  'clifton-park': '[INSERT CLIFTON PARK IDX URL]'
+};
+// A general "browse this area" fallback for the Saratoga Area group only —
+// used solely when the visitor picked "Any home" for one of these three
+// towns and no dedicated single-town page exists yet.
+const SARATOGA_AREA_URL = '[INSERT SARATOGA IDX URL]';
+const saratogaAreaTowns = ['saratoga-springs', 'ballston-spa', 'malta'];
+
+const typeOnlyUrls = {
+  single: '[INSERT SINGLE-FAMILY IDX URL]',
+  condo: '[INSERT CONDO IDX URL]',
+  townhouse: '[INSERT TOWNHOUSE IDX URL]',
+  new: '[INSERT NEW CONSTRUCTION IDX URL]',
+  movein: '[INSERT MOVE-IN READY IDX URL]',
+  multifamily: '[INSERT MULTIFAMILY IDX URL]'
+};
+const combinedUrls = {
+  // Only the combinations Saad explicitly gave an example URL name for are
+  // listed here. Every other (location, type) pair falls back to the
+  // closest relevant destination via getIdxUrl() below — add more entries
+  // here only once real filtered URLs exist for them.
+  albany_single: '[INSERT ALBANY SINGLE-FAMILY IDX URL]',
+  troy_multifamily: '[INSERT TROY MULTIFAMILY IDX URL]',
+  schenectady_condo: '[INSERT SCHENECTADY CONDO IDX URL]'
+};
+const GENERAL_IDX_URL = 'https://onereal.com/saad-tai-1';
+
+function getIdxUrl(location, type){
+  const hasDedicatedLocationPage = Object.prototype.hasOwnProperty.call(locationOnlyUrls, location);
+  const comboKey = location + '_' + type;
+  if(combinedUrls[comboKey]) return combinedUrls[comboKey];
+
+  if(type === 'any'){
+    if(hasDedicatedLocationPage) return locationOnlyUrls[location];
+    if(saratogaAreaTowns.includes(location)) return SARATOGA_AREA_URL;
+    return GENERAL_IDX_URL;
+  }
+  if(!hasDedicatedLocationPage){
+    // A specific property type in a town without its own page — the honest
+    // fallback is a type-wide search, not a guess at a town+type combo URL.
+    return typeOnlyUrls[type] || GENERAL_IDX_URL;
+  }
+  // No combined URL for this pair yet — location is the closest relevant fallback.
+  return locationOnlyUrls[location];
+}
+
+const locationLeafButtons = document.querySelectorAll('[data-location]');
+const locationGroupButtons = document.querySelectorAll('[data-group]');
+const typeButtons = document.querySelectorAll('#typeOptions .search-option');
+const validationMsg = document.getElementById('searchValidationMsg');
+const searchSummary = document.getElementById('searchSummary');
+const idxInlineWarning = document.getElementById('idxInlineWarning');
+const searchCustomWrap = document.getElementById('searchCustomLocationWrap');
+const searchCustomInput = document.getElementById('searchCustomLocation');
+
+// Which sub-panel (if any) belongs to which group trigger, and which group a
+// given leaf location belongs to — used to keep the parent button visually
+// highlighted once a specific leaf is chosen inside it.
+const groupPanels = {
+  'colonie-latham': document.getElementById('colonieLathamSubOptions'),
+  saratoga: document.getElementById('saratogaSubOptions')
+};
+const leafToGroup = {
+  colonie: 'colonie-latham', latham: 'colonie-latham',
+  'saratoga-springs': 'saratoga', 'ballston-spa': 'saratoga', malta: 'saratoga'
+};
+
+function hideAllGroupPanels(){
+  Object.values(groupPanels).forEach(panel=> panel.style.display = 'none');
+  locationGroupButtons.forEach(b=> b.classList.remove('expanded', 'selected'));
+}
+
+// Map the search module's quick picks onto the buyer form's fields, so a
+// visitor never has to repeat a choice they already made above. Both use the
+// same canonical LOCATIONS / PROPERTY_TYPES labels, so this is a direct copy.
+function syncFormFromSearch(){
+  const areaField = document.getElementById('area');
+  const typeField = document.getElementById('type');
+  const formCustomWrap = document.getElementById('formCustomLocationWrap');
+  const formCustomInput = document.getElementById('formCustomLocation');
+
+  if(selectedLocation && areaField){
+    areaField.value = LOCATIONS[selectedLocation];
+    if(selectedLocation === 'other'){
+      formCustomWrap.style.display = 'block';
+      formCustomInput.required = true;
+      if(selectedCustomLocation) formCustomInput.value = selectedCustomLocation;
+    } else {
+      formCustomWrap.style.display = 'none';
+      formCustomInput.required = false;
+      formCustomInput.value = '';
+    }
+  }
+  if(selectedType && typeField){
+    typeField.value = PROPERTY_TYPES[selectedType];
+  }
+}
+
+function updateSearchSummary(){
+  if(selectedLocation && selectedType){
+    const locationText = selectedLocation === 'other'
+      ? 'Other: ' + (selectedCustomLocation || '…')
+      : LOCATIONS[selectedLocation];
+    searchSummary.textContent = locationText + ' · ' + PROPERTY_TYPES[selectedType];
+  } else {
+    searchSummary.textContent = '';
+  }
+}
+
+// Every location leaf — top-level (Albany, Troy, Schenectady, Clifton Park, Other)
+// and nested inside a group's reveal panel (Colonie, Latham, Saratoga Springs,
+// Ballston Spa, Malta) — shares this same selection handler.
+locationLeafButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    selectedLocation = btn.dataset.location;
+    locationLeafButtons.forEach(b=> b.classList.toggle('selected', b === btn));
+    validationMsg.classList.remove('show');
+
+    // If this leaf lives inside a group panel, keep that panel open and
+    // highlight its parent group button; otherwise make sure both panels
+    // are closed (a top-level single choice was made directly).
+    const parentGroup = leafToGroup[selectedLocation];
+    locationGroupButtons.forEach(gb=>{
+      const isParent = gb.dataset.group === parentGroup;
+      gb.classList.toggle('selected', isParent);
+      if(!isParent) gb.classList.remove('expanded');
+    });
+    if(!parentGroup){
+      Object.values(groupPanels).forEach(panel=> panel.style.display = 'none');
+    }
+
+    if(selectedLocation === 'other'){
+      searchCustomWrap.style.display = 'block';
+      searchCustomInput.required = true;
+      searchCustomInput.focus();
+    } else {
+      searchCustomWrap.style.display = 'none';
+      searchCustomInput.required = false;
+      searchCustomInput.value = '';
+      selectedCustomLocation = '';
+    }
+
+    markIdxSearchStarted('location:' + selectedLocation);
+    pushEvent('location_selected', {selected_location: selectedLocation});
+    syncFormFromSearch();
+    updateSearchSummary();
+  });
+});
+
+// Group triggers ("Colonie / Latham", "Saratoga Area") only reveal the honest
+// sub-choice — they never silently pick one location or invent a shared URL.
+locationGroupButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const groupKey = btn.dataset.group;
+    hideAllGroupPanels();
+    groupPanels[groupKey].style.display = 'flex';
+    btn.classList.add('expanded');
+    validationMsg.classList.remove('show');
+
+    // Opening a group clears any previously chosen leaf until a sub-choice is made.
+    selectedLocation = null;
+    locationLeafButtons.forEach(b=> b.classList.remove('selected'));
+    searchCustomWrap.style.display = 'none';
+    searchCustomInput.required = false;
+
+    markIdxSearchStarted('location-group:' + groupKey);
+    updateSearchSummary();
+  });
+});
+
+searchCustomInput.addEventListener('input', ()=>{
+  selectedCustomLocation = searchCustomInput.value.trim();
+  // Mirror into the form's custom field immediately, per the sync requirement.
+  const formCustomInput = document.getElementById('formCustomLocation');
+  if(formCustomInput && selectedLocation === 'other'){
+    formCustomInput.value = selectedCustomLocation;
+  }
+  updateSearchSummary();
+});
+
+typeButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    selectedType = btn.dataset.type;
+    typeButtons.forEach(b=> b.classList.toggle('selected', b === btn));
+    validationMsg.classList.remove('show');
+    markIdxSearchStarted('type:' + selectedType);
+    pushEvent('property_type_selected', {selected_property_type: selectedType});
+    syncFormFromSearch();
+    updateSearchSummary();
+  });
+});
+
+// Form's own area select — reveal/require the custom field only while "Other" is chosen there too
+document.getElementById('area').addEventListener('change', function(){
+  const formCustomWrap = document.getElementById('formCustomLocationWrap');
+  const formCustomInput = document.getElementById('formCustomLocation');
+  if(this.value === 'Other'){
+    formCustomWrap.style.display = 'block';
+    formCustomInput.required = true;
+  } else {
+    formCustomWrap.style.display = 'none';
+    formCustomInput.required = false;
+    formCustomInput.value = '';
+  }
+});
+
+document.getElementById('seeMatchingHomesBtn').addEventListener('click', ()=>{
+  idxInlineWarning.classList.remove('show');
+  if(!selectedLocation){
+    const groupOpen = Object.values(groupPanels).some(panel=> panel.style.display !== 'none');
+    validationMsg.textContent = groupOpen
+      ? 'Choose one from the list below to continue.'
+      : 'Choose a location and a property type to continue.';
+    validationMsg.classList.add('show');
+    return;
+  }
+  if(!selectedType){
+    validationMsg.textContent = 'Choose a location and a property type to continue.';
+    validationMsg.classList.add('show');
+    return;
+  }
+  if(selectedLocation === 'other' && !selectedCustomLocation){
+    validationMsg.textContent = 'Let us know which city, town, or ZIP code you\'re interested in.';
+    validationMsg.classList.add('show');
+    searchCustomInput.focus();
+    return;
+  }
+
+  pushEvent('property_search_click', {
+    selected_location: selectedLocation === 'other' ? selectedCustomLocation : selectedLocation,
+    selected_property_type: selectedType
+  });
+
+  const url = getIdxUrl(selectedLocation, selectedType);
+  if(url && url.trim().startsWith('[')){
+    // Placeholder URL not yet configured — show this on the page, never a browser alert().
+    idxInlineWarning.textContent = 'This search link isn\'t connected yet. Call ' + CONFIG.PHONE_DISPLAY + ' and I\'ll help you find homes directly.';
+    idxInlineWarning.classList.add('show');
+    return;
+  }
+  const opened = window.open(url, '_blank', 'noopener');
+  if(!opened){
+    // Popup blocked — never fail silently.
+    idxInlineWarning.innerHTML = 'Having trouble opening the search? <a href="' + url + '" target="_blank" rel="noopener" style="color:#8A332C; text-decoration:underline; font-weight:600;">Tap here to continue</a>.';
+    idxInlineWarning.classList.add('show');
+  }
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const btn = item.querySelector('.faq-q');
+  const answer = item.querySelector('.faq-a');
+  btn.addEventListener('click', ()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+// form_started — fires once, on first focus inside the form
+const buyerForm = document.getElementById('buyerForm');
+let formStarted = false;
+buyerForm.addEventListener('focusin', function(){
+  if(!formStarted){
+    formStarted = true;
+    pushEvent('form_started');
+  }
+});
+
+// Lead-quality tier — computed from the timeline answer only, never shown to the visitor
+function computeLeadIntentTier(timelineValue){
+  if(['ready','30','1-3'].includes(timelineValue)) return 'high';
+  if(timelineValue === '3-6') return 'medium';
+  if(['6+','research'].includes(timelineValue)) return 'long_term';
+  return '';
+}
+
+// Simple client-side required-field check with per-field messages
+// (native HTML5 validation still runs first via the required/pattern attributes)
+const fieldErrorMessages = {
+  name: 'Please enter your name (at least 2 characters).',
+  phone: 'Please enter a phone number with at least 10 digits.',
+  email: 'Please enter a valid email address.',
+  timeline: 'Please choose when you\'re hoping to buy.'
+};
+
+function validateForm(){
+  let firstInvalid = null;
+
+  buyerForm.querySelectorAll('[required]').forEach(field=>{
+    let valid;
+    if(field.type === 'radio'){
+      valid = buyerForm.querySelectorAll('input[name="' + field.name + '"]:checked').length > 0;
+    } else {
+      valid = field.value.trim() !== '' && field.checkValidity();
+    }
+
+    const isRadioGroup = field.type === 'radio';
+    const errorTarget = isRadioGroup ? document.getElementById(field.name + '-error') : document.getElementById(field.id + '-error');
+
+    if(!isRadioGroup) field.setAttribute('aria-invalid', valid ? 'false' : 'true');
+    field.classList.toggle('field-error', !valid);
+
+    if(errorTarget){
+      if(!valid){
+        errorTarget.textContent = fieldErrorMessages[isRadioGroup ? field.name : field.id] || 'This field is required.';
+        errorTarget.classList.add('show');
+      } else {
+        errorTarget.classList.remove('show');
+        errorTarget.textContent = '';
+      }
+    }
+
+    if(!valid && !firstInvalid) firstInvalid = isRadioGroup ? document.querySelector('input[name="' + field.name + '"]') : field;
+  });
+
+  return firstInvalid;
+}
+
+// form_submitted — POST to the CRM webhook; only show the thank-you state on success
+buyerForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  // Honeypot check — if this hidden field has any value, a bot filled it. Abort quietly.
+  const honeypot = document.getElementById('hp_confirm');
+  if(honeypot && honeypot.value.trim() !== ''){
+    console.warn('Honeypot triggered — submission ignored.');
+    return;
+  }
+
+  const firstInvalid = validateForm();
+  if(firstInvalid){
+    firstInvalid.scrollIntoView({behavior:'smooth', block:'center'});
+    if(typeof firstInvalid.focus === 'function') firstInvalid.focus();
+    return;
+  }
+
+  const data = Object.fromEntries(new FormData(buyerForm).entries());
+  delete data.hp_confirm; // never send the honeypot value onward
+  data.lead_intent_tier = computeLeadIntentTier(data.timeline || '');
+  document.getElementById('lead_intent_tier').value = data.lead_intent_tier;
+
+  // If "Other" was chosen for area, surface the custom text as the readable area value too
+  if(data.area === 'Other' && data.area_other){
+    data.area_display = data.area_other;
+  } else {
+    data.area_display = data.area || '';
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  const errorBanner = document.getElementById('formErrorBanner');
+  errorBanner.classList.remove('show');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  // ============================================================
+  // Make.com webhook — receives all fields in `data` (including the
+  // hidden UTM/gclid/lead_intent_tier/area_other fields) as JSON, then
+  // routes into Follow Up Boss per the configured scenario.
+  // ============================================================
+  fetch('https://hook.us2.make.com/jycxg19j8hx1umsn7kb8ik6tpk1aj9li', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  .then(response=>{
+    if(!response.ok) throw new Error('Webhook responded with ' + response.status);
+
+    pushEvent('form_submitted', {
+      timeline: data.timeline || '',
+      property_type: data.type || '',
+      area: data.area_display,
+      lead_intent_tier: data.lead_intent_tier,
+      utm_campaign: data.utm_campaign || '',
+      utm_term: data.utm_term || ''
+    });
+    // TODO: fire the Google Ads conversion tag here, e.g.:
+    // gtag('event', 'conversion', {'send_to': '[INSERT GOOGLE ADS CONVERSION ID]/[INSERT GOOGLE ADS CONVERSION LABEL]'});
+
+    buyerForm.style.display = 'none';
+    document.getElementById('formSideNote').style.display = 'none';
+    document.getElementById('thankYouPanel').style.display = 'block';
+    document.getElementById('thankYouPanel').setAttribute('tabindex', '-1');
+    document.getElementById('thankYouPanel').focus();
+  })
+  .catch(err=>{
+    console.error('Form submission failed:', err);
+    errorBanner.classList.add('show');
+    errorBanner.setAttribute('tabindex', '-1');
+    errorBanner.focus();
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Show Me Homes That Fit';
+    // Form fields are left exactly as the visitor entered them — nothing is cleared.
+  });
+});
+
+// phone_call_click — tracks every tel: link on the page
+document.querySelectorAll('a[href^="tel:"]').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    const container = link.closest('section, header, .mobile-bar, #thankYouPanel');
+    pushEvent('phone_call_click', {location: container ? (container.id || container.className) : 'unknown'});
+  });
+});
+
+// consultation_booked — TODO: once a real scheduler (Calendly, etc.) is added, fire this
+// event from that tool's booking-confirmed callback, e.g.:
+// pushEvent('consultation_booked', {source: 'thank_you_page'});
+
+/* ============================================================
+   PLACEHOLDER SAFETY NET
+   If any [INSERT ...] placeholder ever reaches production unfilled, this
+   degrades it gracefully instead of showing broken bracket text to a real
+   visitor — a half-finished-looking trust section is worse than a shorter,
+   clean one. This does NOT excuse leaving these unfilled before launch.
+   ============================================================ */
+function isPlaceholder(text){
+  return typeof text === 'string' && text.trim().startsWith('[INSERT');
+}
+
+(function sanitizePlaceholders(){
+  // Headshot → clean initials monogram instead of bracket text
+  const photo = document.getElementById('agentPhoto');
+  if(photo && isPlaceholder(photo.textContent)){
+    photo.textContent = 'ST';
+    photo.classList.add('photo-monogram');
+  }
+
+  // NOTE: "NY License #10401373295" is hard-coded directly in the HTML for both
+  // the trust section and the footer — it is real, verified information, not a
+  // placeholder, so it is never processed by this function and can never be
+  // hidden by placeholder-detection logic.
+
+  // Google Business Profile link — only rendered if CONFIG.GOOGLE_BUSINESS_PROFILE_URL
+  // is a real URL. Otherwise these wrappers stay empty; no placeholder text, no dead link.
+  if(CONFIG.GOOGLE_BUSINESS_PROFILE_URL){
+    const gbpHtml = ' · <a href="' + CONFIG.GOOGLE_BUSINESS_PROFILE_URL + '" target="_blank" rel="noopener noreferrer">View Saad Tai on Google</a>';
+    const trustWrap = document.getElementById('gbpLinkWrap');
+    const footerWrap = document.getElementById('gbpLinkWrapFooter');
+    if(trustWrap) trustWrap.innerHTML = gbpHtml;
+    if(footerWrap) footerWrap.innerHTML = gbpHtml;
+  }
+
+  // Testimonials — hide the whole "what clients have said" block if both are still placeholders
+  const t1 = document.getElementById('testimonial1');
+  const t2 = document.getElementById('testimonial2');
+  const testimonialsBlock = document.getElementById('testimonialsBlock');
+  if(t1 && t2 && testimonialsBlock && isPlaceholder(t1.textContent) && isPlaceholder(t2.textContent)){
+    testimonialsBlock.style.display = 'none';
+  }
+
+  // Recent activity — hide if still a placeholder
+  const activity = document.getElementById('recentActivity');
+  const activityBlock = document.getElementById('recentActivityBlock');
+  if(activity && activityBlock && isPlaceholder(activity.textContent)){
+    activityBlock.style.display = 'none';
+  }
+})();
+
+// Video — only make the play button interactive once a real embed URL is set in CONFIG.
+// The iframe is never loaded until the visitor actually clicks play (lazy-loaded), and
+// it never autoplays with sound.
+const videoFrame = document.getElementById('videoEmbedFrame');
+const videoPlayBtn = document.getElementById('videoPlayBtn');
+const videoCaption = document.getElementById('videoCaption');
+if(!CONFIG.VIDEO_URL){
+  videoPlayBtn.disabled = true;
+  videoPlayBtn.setAttribute('aria-label', 'Video coming soon');
+  videoCaption.textContent = 'Video coming soon — in the meantime, call ' + CONFIG.PHONE_DISPLAY + ' or use the form below to talk directly.';
+} else {
+  videoPlayBtn.addEventListener('click', ()=>{
+    pushEvent('video_play_click');
+    videoFrame.innerHTML = '<iframe src="' + CONFIG.VIDEO_URL + '" style="width:100%; height:100%; border:0;" allow="fullscreen" allowfullscreen title="Introduction video" loading="lazy"></iframe>';
+  });
+}
+
+// browse_homes_nav_click — secondary engagement, tracks the sticky-nav Browse Homes link
+const navBrowseLink = document.getElementById('navBrowseLink');
+if(navBrowseLink){
+  navBrowseLink.addEventListener('click', ()=> pushEvent('browse_homes_nav_click'));
+}
+
+/* ============================================================
+   OPTIONAL — Google Places Autocomplete on the "Other" location fields.
+   Only activates if CONFIG.GOOGLE_MAPS_API_KEY is set. The plain text fields
+   above work correctly on their own with no key at all; this only enhances
+   them. If the script fails to load, is blocked, or errors, the fields
+   silently remain plain text inputs — never alert(), never broken.
+   ============================================================ */
+(function initPlacesAutocompleteIfConfigured(){
+  if(!CONFIG.GOOGLE_MAPS_API_KEY) return; // No key supplied — plain text fields are used as-is.
+
+  const script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(CONFIG.GOOGLE_MAPS_API_KEY) + '&libraries=places&loading=async&callback=__initCapitalRegionAutocomplete';
+  script.async = true;
+  script.onerror = function(){
+    console.warn('Google Places Autocomplete failed to load — falling back to plain text input.');
+  };
+
+  window.__initCapitalRegionAutocomplete = function(){
+    try {
+      // Bias results toward the Capital Region, NY (~25 mile radius around Albany).
+      const capitalRegionBounds = new google.maps.Circle({
+        center: {lat: 42.6526, lng: -73.7562},
+        radius: 40000
+      }).getBounds();
+
+      ['searchCustomLocation', 'formCustomLocation'].forEach(function(fieldId){
+        const input = document.getElementById(fieldId);
+        if(!input) return;
+        const autocomplete = new google.maps.places.Autocomplete(input, {
+          types: ['(regions)'],
+          bounds: capitalRegionBounds,
+          componentRestrictions: {country: 'us'}
+        });
+        autocomplete.bindTo('bounds', {getBounds: function(){ return capitalRegionBounds; }});
+        // Manual typing always remains possible — this only offers suggestions.
+      });
+    } catch(err){
+      console.warn('Places Autocomplete initialization failed — plain text input remains available.', err);
+    }
+  };
+
+  document.head.appendChild(script);
+})();
+</script>
+
+</body>
+</html>
